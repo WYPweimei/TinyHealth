@@ -1,0 +1,58 @@
+//
+//  TinyBase.pch
+//  TinyHealth
+//
+//  Created by 王烨谱 on 16/7/8.
+//  Copyright © 2016年 TinyHealth. All rights reserved.
+//
+
+#ifndef TinyBase_pch
+#define TinyBase_pch
+
+#import "TinyClass.h"
+#import "TinyConst.h"
+
+
+// 获取设备屏幕的物理尺寸
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+
+//判断是否是ios7
+#define IOS7  ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
+#define IOS8  ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+
+//获取颜色
+#define UIColorFromHex(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16))/255.0 green:((float)((hex & 0xFF00) >> 8))/255.0 blue:((float)(hex & 0xFF))/255.0 alpha:1.0]
+
+// 获取颜色的值 r = 红 g = 绿 b = 蓝
+#define RGB(r,g,b) [UIColor colorWithRed:((r)/255.0) green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+//适配比例的红 根据Iphone6进行适配
+#define kIPhone6W  ([UIScreen mainScreen].bounds.size.width/375.0)
+#define kIPhone6H  ([UIScreen mainScreen].bounds.size.height/667.0)
+
+
+/**
+ *  随机颜色
+ */
+#define RandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1]
+
+
+//机型的宏
+#define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPadMini (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+/**
+*  打印
+*
+*/
+#ifndef __OPTIMIZE__
+#    define EKNSLog(...) NSLog(__VA_ARGS__)
+#else
+#    define EKNSLog(...) {}
+#endif
+
+#endif /* TinyBase_pch */
